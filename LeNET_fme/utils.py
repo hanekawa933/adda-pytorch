@@ -9,7 +9,7 @@ import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
 
 import params
-from datasets import get_emnist, get_fashionmnist
+from datasets import get_emnist, get_fmnist
 
 
 def make_variable(tensor, volatile=False):
