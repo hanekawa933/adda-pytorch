@@ -34,8 +34,8 @@ log_step_pre = 2
 eval_step_pre = 20
 save_step_pre = 10
 num_epochs = 150
-log_step = 150
-save_step = 150
+log_step = 10
+save_step = 10
 manual_seed = None
 
 # params for optimizing models
