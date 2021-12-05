@@ -61,10 +61,6 @@ def get_data_loader(name, train=True):
     elif name == "FashionMNIST":
         return get_fmnist(train)
 
-import params
-from datasets import get_mnist, get_usps
-
-
 def init_model(net, restore):
     """Init models with cuda and weights."""
     # init weights of model
