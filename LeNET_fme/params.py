@@ -10,13 +10,13 @@ batch_size = 50
 image_size = 64
 
 # params for source dataset
-src_dataset = "FashionMNIST"
+src_dataset = "MNIST"
 src_encoder_restore = "snapshots/ADDA-source-encoder-final.pt"
 src_classifier_restore = "snapshots/ADDA-source-classifier-final.pt"
 src_model_trained = True
 
 # params for target dataset
-tgt_dataset = "EMNIST"
+tgt_dataset = "USPS"
 tgt_encoder_restore = "snapshots/ADDA-target-encoder-final.pt"
 tgt_model_trained = True
 
@@ -29,11 +29,11 @@ d_model_restore = "snapshots/ADDA-critic-final.pt"
 
 # params for training network
 num_gpu = 1
-num_epochs_pre = 10
+num_epochs_pre = 100
 log_step_pre = 20
 eval_step_pre = 20
 save_step_pre = 100
-num_epochs = 10
+num_epochs = 2000
 log_step = 100
 save_step = 100
 manual_seed = None
