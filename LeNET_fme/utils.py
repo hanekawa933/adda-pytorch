@@ -2,13 +2,15 @@
 
 import os
 import random
+from datasets.fmnist import get_fmnist
 
 import torch
 import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
 
 import params
-from datasets import get_emnist, get_fmnist
+from datasets import get_emnist, get_fashionmnist
+
 
 def make_variable(tensor, volatile=False):
     """Convert Tensor to Variable."""
@@ -56,9 +58,9 @@ def init_random_seed(manual_seed):
 
 def get_data_loader(name, train=True):
     """Get data loader by name."""
-    if name == "EMNIST":
+    if name == "FashionMNIST":
         return get_emnist(train)
-    elif name == "FashionMNIST":
+    elif name == "EMNIST":
         return get_fmnist(train)
 
 
