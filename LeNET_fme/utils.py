@@ -2,15 +2,10 @@
 
 import os
 import random
-from datasets.fmnist import get_fmnist
 
 import torch
 import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
-
-import params
-from datasets import get_emnist, get_fmnist
-
 
 def make_variable(tensor, volatile=False):
     """Convert Tensor to Variable."""
@@ -58,10 +53,10 @@ def init_random_seed(manual_seed):
 
 def get_data_loader(name, train=True):
     """Get data loader by name."""
-    if name == "FashionMNIST":
+    if name == "EMNIST":
         return get_emnist(train)
-    elif name == "EMNIST":
-        return get_fmnist(train)
+    elif name == "FashionMNIST":
+        return get_fashionmnist(train)
 
 
 def init_model(net, restore):
@@ -85,9 +80,9 @@ def init_model(net, restore):
 
 def save_model(net, filename):
     """Save trained model."""
-    if not os.path.exists(params.model_root):
-        os.makedirs(params.model_root)
+    if not os.path.exists(model_root):
+        os.makedirs(model_root)
     torch.save(net.state_dict(),
-               os.path.join(params.model_root, filename))
-    print("save pretrained model to: {}".format(os.path.join(params.model_root,
+               os.path.join(model_root, filename))
+    print("save pretrained model to: {}".format(os.path.join(model_root,
                                                              filename)))

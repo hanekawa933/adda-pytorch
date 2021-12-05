@@ -1,4 +1,4 @@
-"""Dataset setting and data loader for MNIST."""
+"""Dataset setting and data loader for EMNIST."""
 
 
 import torch
