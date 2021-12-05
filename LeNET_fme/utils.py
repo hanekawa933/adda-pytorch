@@ -8,8 +8,7 @@ import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
 
 import params
-from datasets import get_mnist, get_usps
-
+from datasets import get_emnist, get_fmnist
 
 def make_variable(tensor, volatile=False):
     """Convert Tensor to Variable."""
@@ -57,10 +56,13 @@ def init_random_seed(manual_seed):
 
 def get_data_loader(name, train=True):
     """Get data loader by name."""
-    if name == "MNIST":
-        return get_mnist(train)
-    elif name == "USPS":
-        return get_usps(train)
+    if name == "EMNIST":
+        return get_emnist(train)
+    elif name == "FashionMNIST":
+        return get_fashionmnist(train)
+
+import params
+from datasets import get_mnist, get_usps
 
 
 def init_model(net, restore):

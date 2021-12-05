@@ -7,13 +7,13 @@ from utils import get_data_loader, init_model, init_random_seed
 
 if __name__ == '__main__':
     # init random seed
-    init_random_seed(params.manual_seed)
+    init_random_seed(manual_seed)
 
     # load dataset
-    src_data_loader = get_data_loader(params.src_dataset)
-    src_data_loader_eval = get_data_loader(params.src_dataset, train=False)
-    tgt_data_loader = get_data_loader(params.tgt_dataset)
-    tgt_data_loader_eval = get_data_loader(params.tgt_dataset, train=False)
+    src_data_loader = get_data_loader(src_dataset)
+    src_data_loader_eval = get_data_loader(src_dataset, train=False)
+    tgt_data_loader = get_data_loader(tgt_dataset)
+    tgt_data_loader_eval = get_data_loader(tgt_dataset, train=False)
 
     # load models
     src_encoder = init_model(net=LeNetEncoder(),
@@ -34,10 +34,8 @@ if __name__ == '__main__':
     print(">>> Source Classifier <<<")
     print(src_classifier)
 
-    if not (src_encoder.restored and src_classifier.restored and
-            params.src_model_trained):
-        src_encoder, src_classifier = train_src(
-            src_encoder, src_classifier, src_data_loader)
+    if not (src_encoder.restored and src_classifier.restored and params.src_model_trained):
+        src_encoder, src_classifier = train_src(src_encoder, src_classifier, src_data_loader)
 
     # eval source model
     print("=== Evaluating classifier for source domain ===")
@@ -54,10 +52,8 @@ if __name__ == '__main__':
     if not tgt_encoder.restored:
         tgt_encoder.load_state_dict(src_encoder.state_dict())
 
-    if not (tgt_encoder.restored and critic.restored and
-            params.tgt_model_trained):
-        tgt_encoder = train_tgt(src_encoder, tgt_encoder, critic,
-                                src_data_loader, tgt_data_loader)
+    if not (tgt_encoder.restored and critic.restored and params.tgt_model_trained):
+        tgt_encoder = train_tgt(src_encoder, tgt_encoder, critic,src_data_loader, tgt_data_loader)
 
     # eval target encoder on test set of target dataset
     print("=== Evaluating classifier for encoded target domain ===")
