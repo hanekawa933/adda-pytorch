@@ -3,6 +3,9 @@
 import torch
 import torch.nn as nn
 
+from utils import make_variable
+
+
 def eval_tgt(encoder, classifier, data_loader):
     """Evaluation for target encoder by source classifier on target dataset."""
     # set eval state for Dropout and BN layers
@@ -22,13 +25,12 @@ def eval_tgt(encoder, classifier, data_loader):
         labels = make_variable(labels).squeeze_()
 
         preds = classifier(encoder(images))
-        loss += criterion(preds, labels).data
+        loss += criterion(preds, labels).data[0]
 
         pred_cls = preds.data.max(1)[1]
         acc += pred_cls.eq(labels.data).cpu().sum()
 
     loss /= len(data_loader)
-    acc = torch.true_divide(acc,len(data_loader.dataset))
-    
+    acc /= len(data_loader.dataset)
 
     print("Avg Loss = {}, Avg Accuracy = {:2%}".format(loss, acc))
