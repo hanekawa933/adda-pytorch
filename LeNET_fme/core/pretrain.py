@@ -52,7 +52,7 @@ def train_src(encoder, classifier, data_loader):
                               params.num_epochs_pre,
                               step + 1,
                               len(data_loader),
-                              loss.data[0]))
+                              loss.data))
 
         # eval model on test set
         if ((epoch + 1) % params.eval_step_pre == 0):
@@ -90,12 +90,13 @@ def eval_src(encoder, classifier, data_loader):
         labels = make_variable(labels)
 
         preds = classifier(encoder(images))
-        loss += criterion(preds, labels).data[0]
+        loss += criterion(preds, labels).data
 
         pred_cls = preds.data.max(1)[1]
         acc += pred_cls.eq(labels.data).cpu().sum()
 
     loss /= len(data_loader)
-    acc /= len(data_loader.dataset)
+    acc = torch.true_divide(acc,len(data_loader.dataset))
+   
 
     print("Avg Loss = {}, Avg Accuracy = {:2%}".format(loss, acc))
