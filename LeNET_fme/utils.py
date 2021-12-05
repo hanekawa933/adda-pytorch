@@ -59,7 +59,7 @@ def get_data_loader(name, train=True):
     if name == "EMNIST":
         return get_emnist(train)
     elif name == "FashionMNIST":
-        return get_fashionmnist(train)
+        return get_fmnist(train)
 
 import params
 from datasets import get_mnist, get_usps
