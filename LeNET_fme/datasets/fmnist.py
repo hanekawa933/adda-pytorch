@@ -6,7 +6,7 @@ from torchvision import datasets, transforms
 
 import params
 
-def get_fashionmnist(train):
+def get_fmnist(train):
     """Get FashionMNIST dataset loader."""
     # image pre-processing
     pre_process = transforms.Compose([transforms.ToTensor(),

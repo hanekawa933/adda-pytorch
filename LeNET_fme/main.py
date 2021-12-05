@@ -7,13 +7,13 @@ from utils import get_data_loader, init_model, init_random_seed
 
 if __name__ == '__main__':
     # init random seed
-    init_random_seed(manual_seed)
+    init_random_seed(params.manual_seed)
 
     # load dataset
-    src_data_loader = get_data_loader(src_dataset)
-    src_data_loader_eval = get_data_loader(src_dataset, train=False)
-    tgt_data_loader = get_data_loader(tgt_dataset)
-    tgt_data_loader_eval = get_data_loader(tgt_dataset, train=False)
+    src_data_loader = get_data_loader(params.src_dataset)
+    src_data_loader_eval = get_data_loader(params.src_dataset, train=False)
+    tgt_data_loader = get_data_loader(params.tgt_dataset)
+    tgt_data_loader_eval = get_data_loader(params.tgt_dataset, train=False)
 
     # load models
     src_encoder = init_model(net=LeNetEncoder(),
