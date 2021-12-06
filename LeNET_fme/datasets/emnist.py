@@ -15,7 +15,7 @@ def get_emnist(train):
                                         std=params.dataset_std)])
 
     # dataset and data loader
-    emnist_dataset = datasets.MNIST(root=params.data_root,
+    emnist_dataset = datasets.EMNIST(root=params.data_root,split='mnist',
                                 train=train,
                                 transform=pre_process,
                                 download=True)
