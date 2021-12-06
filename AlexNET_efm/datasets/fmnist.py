@@ -9,7 +9,8 @@ import params
 def get_fmnist(train):
     """Get FashionMNIST dataset loader."""
     # image pre-processing
-    pre_process = transforms.Compose([transforms.ToTensor(),
+    pre_process = transforms.Compose([transforms.Resize(224),
+                                      transforms.ToTensor(),
                                       transforms.Normalize(
                                           mean=params.dataset_mean,
                                           std=params.dataset_std)])
